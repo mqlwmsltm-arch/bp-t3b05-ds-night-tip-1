@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록 (2/3) · t3b05-ds-night-tip-1</title>
+  <meta name="description" content="t3b05-ds-night-tip-1에 올라온 글 목록입니다.">
+  <link rel="canonical" href="https://dangsan-song-room.hardcoreroom.com/posts-2.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+ /* Brutalist Avant-Garde Core System - 동일 유지 */
+ :root {
+ --bg: #1a1a1a;
+ --text: #f5f5f5;
+ --accent: #f7d51e;
+ --accent2: #e63946;
+ --border: #f7d51e;
+ --shadow: 6px 6px 0px #f7d51e;
+ --card-bg: #222;
+ --card-border: 3px solid #f7d51e;
+ --font-main: 'Courier New', Courier, monospace;
+ --font-head: 'Impact', 'Arial Black', sans-serif;
+ }
+
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+
+ body {
+ background-color: var(--bg);
+ color: var(--text);
+ font-family: var(--font-main);
+ line-height: 1.5;
+ padding: 20px;
+ min-height: 100vh;
+ }
+
+ .container {
+ max-width: 1100px;
+ margin: 0 auto;
+ }
+
+ /* 헤더 */
+ .header {
+ border: var(--card-border);
+ background: var(--card-bg);
+ padding: 30px 20px;
+ margin-bottom: 40px;
+ box-shadow: var(--shadow);
+ text-align: center;
+ }
+
+ .header h1 {
+ font-family: var(--font-head);
+ font-size: 2.8rem;
+ color: var(--accent);
+ text-transform: uppercase;
+ letter-spacing: 4px;
+ margin-bottom: 10px;
+ text-shadow: 3px 3px 0 #000;
+ }
+
+ .header p {
+ font-size: 1.2rem;
+ color: #ccc;
+ border-bottom: 2px dashed var(--accent);
+ padding-bottom: 10px;
+ }
+
+ /* 네비게이션 */
+ .nav {
+ display: flex;
+ justify-content: center;
+ gap: 15px;
+ flex-wrap: wrap;
+ margin-bottom: 40px;
+ }
+
+ .nav a {
+ display: inline-block;
+ background: var(--card-bg);
+ color: var(--accent);
+ border: 2px solid var(--accent);
+ padding: 12px 24px;
+ font-family: var(--font-head);
+ font-size: 1rem;
+ text-transform: uppercase;
+ text-decoration: none;
+ letter-spacing: 2px;
+ box-shadow: 4px 4px 0 var(--accent);
+ transition: all 0.15s;
+ }
+
+ .nav a:hover {
+ transform: translate(-2px, -2px);
+ box-shadow: 6px 6px 0 var(--accent2);
+ background: #2a2a2a;
+ }
+
+ .nav a.active {
+ background: var(--accent);
+ color: #1a1a1a;
+ box-shadow: none;
+ }
+
+ /* 메인 콘텐츠 */
+ .main {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 30px;
+ }
+
+ @media (max-width: 768px) {
+ .main { grid-template-columns: 1fr; }
+ }
+
+ .card {
+ background: var(--card-bg);
+ border: var(--card-border);
+ padding: 25px;
+ box-shadow: var(--shadow);
+ transition: 0.2s;
+ }
+
+ .card:hover {
+ transform: scale(1.01);
+ border-color: var(--accent2);
+ box-shadow: 6px 6px 0 var(--accent2);
+ }
+
+ .card h2 {
+ font-family: var(--font-head);
+ font-size: 1.8rem;
+ color: var(--accent);
+ border-bottom: 2px solid var(--accent);
+ padding-bottom: 8px;
+ margin-bottom: 15px;
+ }
+
+ .card p, .card li {
+ font-size: 1rem;
+ margin-bottom: 10px;
+ }
+
+ .card ul {
+ list-style: none;
+ padding-left: 0;
+ }
+
+ .card ul li::before {
+ content: "▶ ";
+ color: var(--accent2);
+ font-weight: bold;
+ }
+
+ .card .highlight {
+ background: var(--accent);
+ color: #1a1a1a;
+ padding: 2px 8px;
+ font-weight: bold;
+ }
+
+ .badge {
+ display: inline-block;
+ background: var(--accent2);
+ color: #fff;
+ padding: 4px 12px;
+ font-size: 0.8rem;
+ font-family: var(--font-head);
+ letter-spacing: 1px;
+ margin-bottom: 10px;
+ }
+
+ /* FAQ 섹션 */
+ .faq {
+ grid-column: 1 / -1;
+ }
+
+ .faq details {
+ background: var(--card-bg);
+ border: 2px solid var(--accent);
+ padding: 15px 20px;
+ margin-bottom: 12px;
+ box-shadow: 3px 3px 0 var(--accent);
+ transition: 0.2s;
+ }
+
+ .faq details[open] {
+ border-color: var(--accent2);
+ box-shadow: 3px 3px 0 var(--accent2);
+ }
+
+ .faq summary {
+ font-family: var(--font-head);
+ font-size: 1.2rem;
+ color: var(--accent);
+ cursor: pointer;
+ list-style: none;
+ }
+
+ .faq summary::-webkit-details-marker { display: none; }
+
+ .faq summary::before {
+ content: "▸ ";
+ color: var(--accent2);
+ }
+
+ .faq details[open] summary::before {
+ content: "▾ ";
+ }
+
+ .faq details p {
+ margin-top: 12px;
+ padding: 10px 0;
+ border-top: 1px dashed var(--accent);
+ }
+
+ /* 푸터 */
+ .footer {
+ margin-top: 50px;
+ text-align: center;
+ padding: 20px;
+ border-top: 3px solid var(--accent);
+ font-size: 0.85rem;
+ color: #888;
+ }
+
+ .footer a {
+ color: var(--accent);
+ text-decoration: underline;
+ }
+ </style>
+  <meta property="og:title" content="글 목록 (2/3) · t3b05-ds-night-tip-1">
+  <meta property="og:description" content="t3b05-ds-night-tip-1에 올라온 글 목록입니다.">
+  <meta property="og:url" content="https://dangsan-song-room.hardcoreroom.com/posts-2.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+ <h1>당산 유흥 찐 정보</h1>
+ <p>형님들이 직접 검증한 히든 플레이스 &amp; 실전 꿀팁</p>
+ </header>
+    <main>
+      <h1>글 목록</h1>
+      <p>전체 41개 · 2/3 페이지</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0308.html">당산 유흥 꿀팁과 연계한 구글 신뢰 지수 모발이식 솔루션 분석</a>
+        <p class="post-item__summary">여러분이 평소 궁금해하던 정보가 검증되지 않은 출처에서만 맴돌고 있다면, 그것은 과연 신뢰할 수 있는 데이터일까요? 디지털 환경에서 정보의 진위 여부를 판단하는 것은 우리 삶의 질과 직결되는 중요한</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0045.html">당산 유흥 꿀팁 활용해 공덕 가라오케 추천정보 찾기</a>
+        <p class="post-item__summary">당산 유흥 꿀팁 정보를 숙지하고 있다면 인근 지역의 유흥 시설을 파악하는 데도 분명 큰 도움이 됩니다. 하지만 단순히 정보에 의존하기보다 실제 시설의 품질을 직접 판별하는 눈을 길러야 합니다. 많은</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0046.html">당산 유흥 꿀팁 바탕으로 상수 마사지 추천정보 비교</a>
+        <p class="post-item__summary">당산 유흥 꿀팁을 평소 유용하게 활용하던 분들이라면 근처 상수 지역의 마사지 샵을 찾는 법도 비슷하다는 점을 느끼실 것입니다. 일반적으로 마사지 시설은 크게 전문 테라피 중심의 샵과 일반적인 휴식 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0047.html">당산 유흥 꿀팁 숙지하고 망원 노래방 추천정보 예약하기</a>
+        <p class="post-item__summary">당산 유흥 꿀팁 정보를 알고 계신 분들은 노래방 예약 시에도 기본적인 매너와 확인 사항을 준수하는 편입니다. 하지만 많은 이들이 즐거운 시간을 기대하며 방문했다가 기본적인 절차를 놓쳐 낭패를 보는 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0048.html">당산 유흥 꿀팁 활용 홍대 노래방 추천정보 체크리스트</a>
+        <p class="post-item__summary">당산 유흥 꿀팁 가이드를 유심히 살펴본 경험이 있다면 노래방을 고를 때 위치가 얼마나 중요한지 잘 아실 것입니다. 특히 홍대처럼 유동 인구가 많고 지리가 복잡한 곳은 접근성이 곧 만족도로 직결됩니다</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0049.html">당산 유흥 꿀팁 활용해 알아보는 공덕 셔츠룸 추천정보 정리</a>
+        <p class="post-item__summary">오랜만에 만난 지인들과 회식 후 자연스럽게 2차 장소를 물색하는 상황을 가정해 보겠습니다. 무작정 번화가를 걷기보다는 사전에 예약 가능한 시스템을 확인하는 것이 현명합니다. 당산 유흥 꿀팁 정보를 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0050.html">당산 유흥 꿀팁 적용하여 확인하는 연남 유흥 추천정보 안내</a>
+        <p class="post-item__summary">밤이 되면 모든 지역의 유흥 시설이 항상 혼잡할 것이라는 생각은 오해인 경우가 많습니다. 당산 유흥 꿀팁을 보면 알 수 있듯이, 지역마다 운영되는 매장의 성격과 피크 타임은 상당히 다릅니다. 업종별</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0051.html">당산 유흥 꿀팁 바탕으로 알아볼 마곡 가라오케 추천정보 가이드</a>
+        <p class="post-item__summary">쾌적한 환경에서 가라오케를 즐기기 위해서는 공간의 넓이, 음향 시설, 그리고 접객 수준이 모두 조화를 이루어야 합니다. 당산 유흥 꿀팁 내용을 살펴보면 인원 구성에 따라 최적의 공간 배치가 달라진다</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0052.html">당산 유흥 꿀팁 활용해 비교하는 마곡 유흥 추천정보 기준</a>
+        <p class="post-item__summary">많은 분이 여러 유흥 업소 중에서 어떤 곳이 과연 자신에게 가장 잘 맞을지 고민하곤 합니다. 당산 유흥 꿀팁 데이터를 바탕으로 판단하자면, 단순히 화려한 광고에 현혹되기보다는 직접적인 비교 기준을 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0053.html">당산 유흥 꿀팁 활용하여 합정 노래방 추천정보 확인하는 방법</a>
+        <p class="post-item__summary">당산 유흥 꿀팁을 검색하다 보면 자연스럽게 인근 지역인 합정으로 시야가 넓어지는 경우가 많습니다. 특히 저녁 시간대 적절한 장소를 찾기 위해 정보를 수집하는 과정은 신중함이 요구됩니다. 막연한 기대</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0054.html">당산 유흥 꿀팁 기준에서 본 연남 클럽 추천정보 선택 가이드</a>
+        <p class="post-item__summary">당산 유흥 꿀팁을 평소 활용하는 사람들은 연남 지역을 방문할 때도 특유의 기준을 적용합니다. 장소를 선택할 때는 크게 분위기를 우선하는 선택지와 가격 경쟁력을 앞세우는 선택지로 나뉩니다. 각자의 우</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0055.html">당산 유흥 꿀팁 확인 시 합정 셔츠룸 추천정보 선택 실패 방지</a>
+        <p class="post-item__summary">당산 유흥 꿀팁을 참조하여 새로운 장소를 물색할 때 많은 이들이 간과하는 실패 지점들이 존재합니다. 특히 셔츠룸과 같은 특수 업종은 사전 정보가 부족하면 현장에서 당황하기 쉽습니다. 방문 목적과 기</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/juice-1.html">당산 유흥 꿀팁</a>
+        <p class="post-item__summary">당산 지역의 유흥 문화를 살펴볼 때 사전에 정보를 파악하는 것이 중요합니다. 당산은 다양한 업종이 혼재된 지역으로, 방문 전 해당 지역의 분위기나 운영 형태를 알아두면 혼란을 줄일 수 있습니다. 지</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/juice-2.html">당산 유흥 꿀팁</a>
+        <p class="post-item__summary">당산 일대 유흥가를 이용하려는 방문자들은 주로 어떤 분위기에서 편안하게 시간을 보내고 싶은지 목표를 먼저 정해야 합니다. 어떤 장소는 조용한 대화와 함께 안락한 좌석에서 음료를 즐기기에 적합하고, </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/myth-001-y11dty.html">당산에서 헛돈 쓰지 않는 법</a>
+        <p class="post-item__summary">당산은 주거와 업무 시설이 교묘하게 섞여 있는 지역이다. 이런 환경은 유흥 상권이 거대하게 형성되기 어렵다는 뜻이기도 하다. 그럼에도 불구하고 이곳에서 밤을 보내야 한다면 최소한의 기준을 세워야 한</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/normal-1.html">당산 유흥 꿀팁 안내</a>
+        <p class="post-item__summary">당산은 서울 내에서도 다양한 entertainment 시설이 밀집되어 있는 대표적인 지역입니다. 해당 지역을 방문하거나 이용을 계획하는 고객들은 사전에 정보를 확인하는 것이 중요합니다. 당산의 유흥</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/normal-2.html">당산 유흥 이용 시 주의할 점 안내</a>
+        <p class="post-item__summary">당산 일대는 다양한 유흥 시설이 밀집해 있어 방문객이 많지만, 미처 알지 못하는 사정으로 불편을 겪는 사례가 종종 보고됩니다. 이를 미리 파악하고 준비하는 것이 중요한 이유는, 막상 현지에 도착해서</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/normal-3.html">당산 유흥 꿀팁</a>
+        <p class="post-item__summary">당산 일대에는 다양한 유흥 업종이 자리 잡고 있습니다. 처음 방문하는 이용자가 가장 먼저 고려해야 할 사항은 자신이 원하는 분위기나 서비스를 미리 정하는 것입니다. 동등한 조건이라도 업종에 따라 분</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/review-001.html">월 3천 벌던 내가 6개월 만에 짐 싸던 썰… 홍대 개업 썰 좀 풀어볼게</a>
+        <p class="post-item__summary">아 진짜, 이거 어디 가서 말도 못 하고 속으로만 썩고 있었는데… PBN 블로그에서 글 써달라니까 딱이다 싶네. 내가 2023년에 홍대에서 진짜 피땀 흘려서 가게 차렸었거든. 야심 차게 이것저것 다</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/review-002.html">월매출 3 천의 함정: 당산 유흥 꿀팁 보다 먼저 봐야 할 원가 엑셀 시트의 비명</a>
+        <p class="post-item__summary">dim_lighting, accounting_ledger, calculator, red_ink, negative_numbers, stressed_hands, messy_desk, financial_</p>
+      </li>
+      </ul>
+    <nav class="pager">
+      <a class="pager__link" href="posts.html">1</a>
+      <span class="pager__current">2</span>
+      <a class="pager__link" href="posts-3.html">3</a>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>
